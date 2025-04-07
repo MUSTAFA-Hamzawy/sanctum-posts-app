@@ -29,8 +29,9 @@ class RouteServiceProvider extends ServiceProvider
         });
 
         $this->routes(function () {
+            $API_VERSION = env('CURRENT_API_VERSION', 'v1');
             Route::middleware('api')
-                ->prefix('api')
+                ->prefix("api/{$API_VERSION}")
                 ->group(base_path('routes/api.php'));
 
             Route::middleware('web')
