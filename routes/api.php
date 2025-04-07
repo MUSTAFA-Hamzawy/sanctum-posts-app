@@ -33,3 +33,5 @@ Route::get('/not-authorized', function () {
         'error' => 'Unauthorized access. Please login to access this resource.'
     ], 401);
 })->name('not-authorized');
+
+require_once __DIR__.'/post.php';
