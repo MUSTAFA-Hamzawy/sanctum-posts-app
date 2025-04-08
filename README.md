@@ -68,8 +68,7 @@ then, Move to the project directory
 ```
 6. Run Tests ( Optional )
 ```sh
-    php artisan migrate
-    php artisan db:seed
+    php artisan test
 ```
 7. Start Running
 ```sh
