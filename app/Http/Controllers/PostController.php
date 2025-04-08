@@ -54,8 +54,13 @@ class PostController extends Controller
             return response()->json(['error' => 'only owner post allowed to edit.'], 403);
         }
 
-        $post = $this->postService->update($post, $validData);
-        return response()->json(['message' => 'Post updated', 'post' => $post]);
+        $post->fill($request->only(['title', 'content']));
+        if ($post->isDirty(['title', 'content'])) {
+            $post = $this->postService->update($post, $validData);
+            return response()->json(['message' => 'Post updated', 'post' => $post]);
+        }
+
+        return response()->json(['message' => 'No changes detected.'], 304);
     }
 
     public function destroy(Post $post)
