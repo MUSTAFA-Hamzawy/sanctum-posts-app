@@ -2,8 +2,6 @@
 
 namespace App\Http;
 
-use App\Http\Middleware\AuthMiddleware;
-use App\Http\Middleware\CheckTokenExpiration;
 use App\Http\Middleware\TimeDifferenceMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 

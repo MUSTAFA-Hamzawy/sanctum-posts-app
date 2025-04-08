@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Auth;
@@ -27,8 +28,8 @@ class AuthService
                 'login' => ['Wrong credentials.'],
             ]);
         }
-
-        $token = $user->createToken('auth_token')->plainTextToken;
+        $expiresAt = Carbon::now()->addMinute(env('TOKEN_EXPIRY_TIME', 15));
+        $token = $user->createToken('auth_token', ['*'], $expiresAt)->plainTextToken;
 
         return [
             'user' => $user,
